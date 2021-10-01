@@ -1,0 +1,50 @@
+GET http://localhost:3000
+###
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username":"ashlen15294",
+  "password":"1234"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "ashlen152",
+  "password": "1234"
+}
+
+
+###
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTU3NjQxNDJmYmU1ZGNmYzM2NDljMWMiLCJpYXQiOjE2MzMxMTcyMDR9.o5pJN88BUqJf3S7y2MaMG6srT1wWOv8jZmC4ESmhS3g
+
+{
+  "title" : "My first post",
+  "description" : "acb",
+  "url": "google.com",
+  "status" : "LEARNING"
+}
+
+###
+GET http://localhost:3000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTU3NjQxNDJmYmU1ZGNmYzM2NDljMWMiLCJpYXQiOjE2MzMxMTcyMDR9.o5pJN88BUqJf3S7y2MaMG6srT1wWOv8jZmC4ESmhS3g
+
+###
+PUT http://localhost:3000/api/posts/6157641f2fbe5dcfc3649c1f
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTU3NjQxNDJmYmU1ZGNmYzM2NDljMWMiLCJpYXQiOjE2MzMxMTcyMDR9.o5pJN88BUqJf3S7y2MaMG6srT1wWOv8jZmC4ESmhS3g
+
+{
+  "title" : "My update post"
+}
+
+
+###
+DELETE  http://localhost:3000/api/posts/6157641f2fbe5dcfc3649c1e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTU3NjQxNDJmYmU1ZGNmYzM2NDljMWMiLCJpYXQiOjE2MzMxMTcyMDR9.o5pJN88BUqJf3S7y2MaMG6srT1wWOv8jZmC4ESmhS3g
