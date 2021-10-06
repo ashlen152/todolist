@@ -3,11 +3,25 @@ const express = require("express");
 const router = express.Router();
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+const verifyToken = require('../middleware/auth');
 
 const User = require("../models/User");
 
-router.get("/", (req, res) => {
-  res.send("Auth");
+// @route GET api/auth
+// @desc Check if user is logged in
+// @access Public
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user)
+      return res
+        .status(400)
+        .json({ success: false, message: "User not found" });
+    res.json({ success: true, user });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ success: false, message: "Internal server errors" });
+  }
 });
 
 // @route POST api/auth/register
@@ -72,7 +86,7 @@ router.post("/login", async (req, res) => {
         .status(400)
         .json({ success: false, message: "Incorrect username" });
     }
-    
+
     const passwordValid = await argon2.verify(user.password, password);
     if (!passwordValid) {
       return res
@@ -94,7 +108,8 @@ router.post("/login", async (req, res) => {
     });
   } catch (e) {
     console.log(e);
-    res.status(500).json({ success: false, message: "Internal server errors" });}
+    res.status(500).json({ success: false, message: "Internal server errors" });
+  }
 });
 
 module.exports = router;
