@@ -28,8 +28,8 @@ const NavBar = () => {
           width="32"
           height="32"
           className="mr-2"
-        />
-        LearnIt
+        /> {' '}
+         LearnIt
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

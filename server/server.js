@@ -6,9 +6,7 @@ const authRouter = require("./routes/auth");
 const postRouter = require('./routes/post');
 const mongooseDB = async () => {
   try {
-    await mongoose.connect(
-      `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@todolist.hpg4o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-    );
+    await mongoose.connect(process.env.DB_URL)
 
     console.log("MongoDB Connected");
   } catch (e) {
